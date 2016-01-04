@@ -120,8 +120,9 @@ public class CameraSurfaceView extends AutoFitGLSurfaceView
 
                 mBackgroundHandler.post(new Runnable() {
                     @Override public void run() {
-                        CameraController.getInstance()
-                                .setupCamera(surfaceTexture, getContext().getApplicationContext(),
+                        CameraController ins = CameraController.getInstance();
+                        ins.checkSupportFontFacingCamera(true);
+                        ins.setupCamera(surfaceTexture, getContext().getApplicationContext(),
                                         width);
                         mBackgroundHandler.sendMessage(mBackgroundHandler.obtainMessage(
                                 CameraSurfaceView.CameraHandler.CONFIGURE_CAMERA, width, height));

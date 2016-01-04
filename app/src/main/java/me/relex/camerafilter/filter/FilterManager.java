@@ -2,6 +2,9 @@ package me.relex.camerafilter.filter;
 
 import android.content.Context;
 import me.relex.camerafilter.R;
+import me.relex.camerafilter.filter.BlurFilter.CameraFilterGaussianBlur;
+import me.relex.camerafilter.filter.BlurFilter.CameraFilterGaussianBlur2;
+import me.relex.camerafilter.filter.BlurFilter.CameraFilterMotionBlur;
 
 public class FilterManager {
 
@@ -22,8 +25,12 @@ public class FilterManager {
                 return new CameraFilter(context);
             case Blend:
                 return new CameraFilterBlend(context, R.drawable.mask);
+            case MotionBlur:
+                return new CameraFilterMotionBlur(context, 0.02f, 3.0f);
             case SoftLight:
                 return new CameraFilterBlendSoftLight(context, R.drawable.mask);
+            case GaussianBlur:
+                return new CameraFilterGaussianBlur2(context, 1.0f);
             case ToneCurve:
                 mCurveIndex++;
                 if (mCurveIndex > 10) {
@@ -54,6 +61,6 @@ public class FilterManager {
     }
 
     public enum FilterType {
-        Normal, Blend, SoftLight, ToneCurve
+        Normal, Blend, SoftLight, ToneCurve, MotionBlur, GaussianBlur
     }
 }

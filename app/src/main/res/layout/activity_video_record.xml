@@ -8,8 +8,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+    <TextView
+        android:id="@+id/tv_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:textColor="#FF0000"
+        android:textSize="24sp" />
 
     <LinearLayout
+        android:id="@+id/layout_btn"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,30 +32,13 @@
             android:text="@string/filter_normal"
             android:gravity="center"/>
 
-        <!--<android.support.v7.widget.AppCompatButton-->
-        <!--android:id="@+id/filter_blend"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_weight="1"-->
-        <!--android:layout_height="48dp"-->
-        <!--android:text="@string/filter_blend"-->
-        <!--android:gravity="center"/>-->
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/filter_tone_curve"
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/spinner_filter_type"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="48dp"
-            android:text="@string/filter_tone_curve"
+            android:text="@string/spinner_filter_type"
             android:gravity="center"/>
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/filter_soft_light"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="48dp"
-            android:text="@string/filter_soft_light"
-            android:gravity="center"/>
-
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/record"
@@ -58,5 +50,13 @@
 
 
     </LinearLayout>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/view_clip"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_above="@id/layout_btn"
+        android:text="@string/view_clip"
+        android:gravity="center"/>
 
 </RelativeLayout>

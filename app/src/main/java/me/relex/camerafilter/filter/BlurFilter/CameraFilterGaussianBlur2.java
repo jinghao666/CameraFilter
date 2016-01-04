@@ -2,26 +2,23 @@ package me.relex.camerafilter.filter.BlurFilter;
 
 import android.content.Context;
 import android.opengl.GLES20;
-import android.util.Log;
 
 import java.nio.FloatBuffer;
+
 import me.relex.camerafilter.R;
 import me.relex.camerafilter.filter.CameraFilter;
 import me.relex.camerafilter.gles.GlUtil;
 
-public class CameraFilterGaussianSingleBlur extends CameraFilter {
+public class CameraFilterGaussianBlur2 extends CameraFilter {
 
     private int muTexelWidthOffset;
     private int muTexelHeightOffset;
+    private float mBlurRatio = 1.0f;
 
-    private float mBlurRatio;
-    private boolean mWidthOrHeight;
-
-    public CameraFilterGaussianSingleBlur(Context applicationContext, float blurRatio,
-            boolean widthOrHeight) {
+    public CameraFilterGaussianBlur2(Context applicationContext, float ratio) {
         super(applicationContext);
-        mBlurRatio = blurRatio;
-        mWidthOrHeight = widthOrHeight;
+
+        mBlurRatio = ratio;
     }
 
     @Override protected int createProgram(Context applicationContext) {
@@ -42,14 +39,9 @@ public class CameraFilterGaussianSingleBlur extends CameraFilter {
         super.bindGLSLValues(mvpMatrix, vertexBuffer, coordsPerVertex, vertexStride, texMatrix,
                 texBuffer, texStride);
 
-        if (mWidthOrHeight) {
-            GLES20.glUniform1f(muTexelWidthOffset,
-                    mIncomingWidth == 0 ? 0f : mBlurRatio / (float)mIncomingWidth);
-            //GLES20.glUniform1f(muTexelHeightOffset, 0);
-        } else {
-            //GLES20.glUniform1f(muTexelWidthOffset, 0);
-            GLES20.glUniform1f(muTexelHeightOffset,
-                    mIncomingHeight == 0 ? 0f : mBlurRatio / (float)mIncomingHeight);
-        }
+        GLES20.glUniform1f(muTexelWidthOffset,
+                mIncomingWidth == 0 ? 0f : mBlurRatio / (float) mIncomingWidth);
+        GLES20.glUniform1f(muTexelHeightOffset,
+                mIncomingHeight == 0 ? 0f : mBlurRatio / (float) mIncomingHeight);
     }
 }
